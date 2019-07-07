@@ -20,10 +20,16 @@ resource "aws_instance" "myserver" {
     connection {
       user = "ec2-user"
       private_key = "${file("../../.ssh/EffectiveDevOpsAWS.pem")}"
+      host = "${self.public_ip}"
     }
     inline = [
       "sudo yum install --enablerepo=epel -y ansible git",
-      "sudo ansible-pull -U https://github.com/JayKay24/EffectiveDevOpsTerraform.git",
+      "sudo ansible-pull -U https://github.com/JayKay24/ansible helloworldyml -i localhost.",
     ]
   }
+}
+
+# IP address of newly created ec2 instance
+output "myserver" {
+  value = "${aws_instance.myserver.public_ip}"
 }
