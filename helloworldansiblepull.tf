@@ -19,12 +19,12 @@ resource "aws_instance" "myserver" {
   provisioner "remote-exec" {
     connection {
       user = "ec2-user"
-      private_key = "${file("../../.ssh/EffectiveDevOpsAWS.pem")}"
+      private_key = "${file("../.ssh/EffectiveDevOpsAWS.pem")}"
       host = "${self.public_ip}"
     }
     inline = [
       "sudo yum install --enablerepo=epel -y ansible git",
-      "sudo ansible-pull -U https://github.com/JayKay24/ansible helloworldyml -i localhost.",
+      "sudo ansible-pull -U https://github.com/yogeshraheja/ansible helloworld.yml -i localhost.",
     ]
   }
 }
