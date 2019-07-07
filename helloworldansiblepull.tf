@@ -24,7 +24,7 @@ resource "aws_instance" "myserver" {
     }
     inline = [
       "sudo yum install --enablerepo=epel -y ansible git",
-      "sudo ansible-pull -U https://github.com/yogeshraheja/ansible helloworld.yml -i localhost.",
+      "sudo ansible-pull -U https://github.com/JayKay24/ansible helloworld.yml -i localhost.",
     ]
   }
 }
